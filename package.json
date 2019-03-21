@@ -30,6 +30,7 @@
   },
   "scripts": {
     "lint": "standard --global Blob --global FileReader",
-    "test-local": "npm run lint && airtap --local test/*.js"
+    "test": "npm run lint && airtap -- test/*.js",
+    "test-local": "airtap --local test/*.js"
   }
 }
