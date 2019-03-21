@@ -2,7 +2,7 @@
 var test = require('tape')
 var ReadStream = require('../src/read-stream')
 
-test('ReadStream should be able to read all data in the blob', function (t) {
+test('ReadStream should be able to read all data in the blob', { timeout: 500 }, function (t) {
   var blob = new Blob(['abcdef'])
   var data = ''
   new ReadStream(blob, { highWaterMark: 1 })
@@ -14,7 +14,7 @@ test('ReadStream should be able to read all data in the blob', function (t) {
     })
 })
 
-test('ReadStream should be destroyed', function (t) {
+test('ReadStream should be destroyed', { timeout: 500 }, function (t) {
   new ReadStream(new Blob(['abcdef']))
     .resume()
     .on('end', function () {
@@ -24,7 +24,7 @@ test('ReadStream should be destroyed', function (t) {
     })
 })
 
-test('ReadStream should emit error event', function (t) {
+test('ReadStream should emit error event', { timeout: 500 }, function (t) {
   new ReadStream(new Blob(['abcdef']), { highWaterMark: 1 })
     .on('data', function (chunk) {
       if (chunk.toString() === 'e') this.destroy(new Error('intentional'))
