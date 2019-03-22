@@ -8,7 +8,10 @@ function ReadStream (blob, options) {
   if (options.highWaterMark === undefined) options.highWaterMark = 64 * 1024
   Readable.call(this, options)
 
-  this._blob = blob.slice(options.start, options.end)
+  var start = ~~options.start
+  var end = options.end === undefined ? blob.size : ~~options.end
+
+  this._blob = blob.slice(start, end)
   this._end = this._blob.size
   this._pos = 0
   this._reader = new FileReader()

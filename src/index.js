@@ -22,6 +22,9 @@ BlobSlicer.prototype.read = function (start, end, cb) {
   }
   if (typeof cb !== 'function') throw new TypeError('"callback" argument must be a function')
 
+  start = ~~start
+  end = end === undefined ? this._blob.size : ~~end
+
   var reader = new FileReader()
   reader.addEventListener('loadend', function onLoadend () {
     this.removeEventListener('loadend', onLoadend)
