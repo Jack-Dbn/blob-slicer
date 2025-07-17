@@ -1,5 +1,5 @@
 {
-  "name": "blob-slicer",
+  "name": "blob-slicer-jig",
   "version": "1.0.0",
   "description": "read all or part of the content in a Blob or File as a Buffer or Stream",
   "keywords": [

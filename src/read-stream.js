@@ -59,3 +59,12 @@ ReadStream.prototype._destroy = function (err, cb) {
   this._reader.removeEventListener('loadend', this._loadendListener)
   this._reader = null
 }
+
+ReadStream.prototype.destroy = function (err) {
+  if (this.destroyed) return
+  this.destroyed = true
+  this._destroy(err, (err) => {
+    if (err) this.emit('error', err)
+    this.emit('close')
+  })
+}
